@@ -1,0 +1,147 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-tick-align
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+
+   objeto = [
+    {
+        "ano": 2013,
+        "total_chuva_mm": 280.0,
+        "dias_chuva_mais_5mm": 14,
+        "dias_chuva_mais_10mm": 9
+    },
+    {
+        "ano": 2014,
+        "total_chuva_mm": 404.6,
+        "dias_chuva_mais_5mm": 18,
+        "dias_chuva_mais_10mm": 15
+    },
+    {
+        "ano": 2015,
+        "total_chuva_mm": 386.7,
+        "dias_chuva_mais_5mm": 16,
+        "dias_chuva_mais_10mm": 9
+    },
+    {
+        "ano": 2016,
+        "total_chuva_mm": 295.0,
+        "dias_chuva_mais_5mm": 17,
+        "dias_chuva_mais_10mm": 10
+    },
+    {
+        "ano": 2017,
+        "total_chuva_mm": 211.5,
+        "dias_chuva_mais_5mm": 11,
+        "dias_chuva_mais_10mm": 5
+    },
+    {
+        "ano": 2018,
+        "total_chuva_mm": 764.8,
+        "dias_chuva_mais_5mm": 28,
+        "dias_chuva_mais_10mm": 21
+    },
+    {
+        "ano": 2019,
+        "total_chuva_mm": 497.9,
+        "dias_chuva_mais_5mm": 25,
+        "dias_chuva_mais_10mm": 16
+    },
+    {
+        "ano": 2020,
+        "total_chuva_mm": 591.3,
+        "dias_chuva_mais_5mm": 19,
+        "dias_chuva_mais_10mm": 11
+    },
+    {
+        "ano": 2021,
+        "total_chuva_mm": 388.5,
+        "dias_chuva_mais_5mm": 19,
+        "dias_chuva_mais_10mm": 11
+    },
+    {
+        "ano": 2022,
+        "total_chuva_mm": 938.6,
+        "dias_chuva_mais_5mm": 37,
+        "dias_chuva_mais_10mm": 24
+    },
+        {
+        "ano": 2023,
+        "total_chuva_mm": 376.6,
+        "dias_chuva_mais_5mm": 15,
+        "dias_chuva_mais_10mm": 13
+    }
+    ]
+
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+        title: {
+        text: 'Volume de chuva acumulada por ano (2014 a 2023) - Fazenda Carnaúba - Taperoá - PB', // Título do gráfico
+        left: 'center', // Centraliza o título
+        top: '10', // Posiciona o título no topo
+        textStyle: {
+          fontSize: 20, // Tamanho da fonte
+          fontWeight: 'bold' // Peso da fonte
+        }
+      },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+        type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+        type: 'category',
+        data: objeto.map(item => item.ano),
+        axisTick: {
+            alignWithLabel: true
+        }
+        }
+    ],
+    yAxis: [
+        {
+        type: 'value'
+        }
+    ],
+    series: [
+        {
+        name: 'Direct',
+        type: 'bar',
+        barWidth: '60%',
+        data: objeto.map(item => item.total_chuva_mm)
+        }
+    ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
